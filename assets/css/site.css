@@ -17,6 +17,20 @@
 	font-family: IranSans;
 }
 
-body{
-	direction: rtl;
+
+.main {
+    padding: 3%;
+    padding-top: 5%;
+    direction: rtl;
+}
+
+#sidebar {
+    border-left: 2px #455C00 solid;
+    background-color: #8AB800;
+}
+
+#topar {
+    border-bottom: 3px #8AB800 solid;
+    background-color: #303030;
+		direction: rtl;
 }
