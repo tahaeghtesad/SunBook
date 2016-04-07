@@ -51,7 +51,14 @@
             </p>
             <div class="">
                 <section id="socialLoginForm">
-                    <!-- @Html.Partial("_ExternalLoginsListPartial", new {Action = "ExternalLogin", ReturnUrl = ViewBag.ReturnUrl}) -->
+                  <h4 class="ui dividing red header">از روش دیگری برای ورود استفاده کنید</h4>
+                  <div id="socialLoginList">
+                    <p>
+                      <button type="submit" class="ui google plus button" id="google" name="provider" value="google" title="ورود با استفاده از حساب گوگل"><i class="icon google"></i>Google</button>
+                      <button type="submit" class="ui instagram button" id="instagram" name="provider" value="instagram" title="ورود با استفاده از حساب اینستاگرام"><i class="icon instagram"></i>Instagram</button>
+                      <button type="submit" class="ui facebook button" id="facebook" name="provider" value="facebook" title="ورود با استفاده از حساب فیسبوک"><i class="icon facebook"></i>Facebook</button>
+                    </p>
+                  </div>
                 </section>
             </div>
         </section>
