@@ -13,8 +13,8 @@
 	font-weight: 700;
 }
 
-*{
-	font-family: IranSans;
+:not(i){
+	font-family: IranSans !IMPORTANT;
 }
 
 
