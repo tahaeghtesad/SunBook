@@ -1,6 +1,6 @@
 package ir.arcinc.sunbook.controller;
 
-import org.springframework.boot.autoconfigure.web.WebMvcProperties;
+import org.hibernate.boot.registry.classloading.spi.ClassLoaderService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
