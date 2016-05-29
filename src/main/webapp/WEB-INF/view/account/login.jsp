@@ -1,13 +1,17 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html>
 <html>
 
 <head>
     <meta charset="utf-8" />
-    <link rel="stylesheet" type="text/css" href="assets/semantic/semantic.rtl.min.css">
-    <link rel="stylesheet" type="text/css" href="assets/css/site.css">
-    <script type="text/javascript" src="assets/js/jquery-2.2.2.min.js"></script>
-    <script type="text/javascript" src="assets/semantic/semantic.min.js"></script>
-    <script type="text/javascript" src="assets/js/site.js"></script>
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/semantic/semantic.rtl.min.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/site.css">
+    <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery-2.2.2.min.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/resources/semantic/semantic.min.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/site.js"></script>
     <title>ورود</title>
 </head>
 
@@ -47,7 +51,6 @@
         <a href="/" class="item">خانه<i class="home icon"></i></a>
     </div>
 
-
     <div class="main pusher dimmer">
 
         <div class="ui grid">
@@ -55,29 +58,37 @@
                 <!-- End Of Header -->
                 <h2 class="ui header green">ثبت نام</h2>
                 <section id="loginForm">
-                    <form method="post" action="" class="ui form" role="form">
+                    <c:url value="/account/login-submit" var="loginUrl"/>
+                    <form method="post" action="${loginUrl}" class="ui form" role="form">
                         <h4 class="ui dividing header blue">ورود با استفاده از حساب سایت</h4>
-                        <!-- @Html.ValidationSummary() -->
+                        <%--@Html.ValidationSummary()--%>
+                        <c:if test="${error ne null}">
+                            <div class="validation-summary-errors">
+                                <ul>
+                                    <li>نام کاربری یا رمز عبور معتبر نیست.</li>
+                                </ul>
+                            </div>
+                        </c:if>
                         <div class="ui piled segment">
                             <div class="field required">
                                 <label>نام کاربری</label>
                                 <div class="ui icon input">
-                                    <input type="text" name="Username" placeholder="taha" />
+                                    <input type="text" name="j_username" placeholder="taha" />
                                     <i class="user icon"></i>
                                 </div>
-                                <!-- @Html.ValidationMessageFor(m => m.UserName) -->
+                                <%--@Html.ValidationMessageFor(m => m.UserName)--%>
                             </div>
                             <div class="field required">
                                 <label>رمز عبور</label>
                                 <div class="ui icon input">
-                                    <input type="password" name="Password" placeholder="******" / />
+                                    <input type="password" name="j_password" placeholder="******" />
                                     <i class="lock icon"></i>
                                 </div>
-                                <!-- @Html.ValidationMessageFor(m => m.Password) -->
+                                <%--@Html.ValidationMessageFor(m => m.Password)--%>
                             </div>
                             <div class="field">
                                 <div class="ui toggle checkbox">
-                                    <input type="checkbox" name="RememberMe" />
+                                    <input type="checkbox" name="rememberMe" />
                                     <label>مرا فراموش نکن</label>
                                 </div>
                             </div>
@@ -85,11 +96,12 @@
                         <div class="ui buttons">
                             <input type="submit" value="ورود" class="ui positive button" />
                             <div class="or"></div>
-                            <a href="/" class="ui button" />لغو</a>
+                            <a href="/" class="ui button" >لغو</a>
                         </div>
                         <p>
                             <a href="/register">ثبت نام</a> کنید اگر حساب ندارید
                         </p>
+                        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
                     </form>
                     <div class="ui loading segment">
                         <section id="socialLoginForm">

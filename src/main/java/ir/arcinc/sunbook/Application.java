@@ -1,26 +1,9 @@
 package ir.arcinc.sunbook;
 
-import ir.arcinc.sunbook.datamodel.User;
-import ir.arcinc.sunbook.repository.UserDao;
-import ir.arcinc.sunbook.repository.UserDaoImpl;
-import ir.arcinc.sunbook.service.UserService;
-import ir.arcinc.sunbook.service.UserServiceImpl;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.web.WebApplicationInitializer;
-import org.springframework.web.context.ContextLoaderListener;
-import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
-import org.springframework.web.servlet.DispatcherServlet;
 
-import javax.servlet.ServletContext;
-import javax.servlet.ServletException;
-import javax.servlet.ServletRegistration;
-import javax.sql.DataSource;
-import java.sql.SQLException;
 import java.util.Arrays;
 
 /**
@@ -34,8 +17,8 @@ public class Application{
 
         String[] beans = ctx.getBeanDefinitionNames();
         Arrays.sort(beans);
-        for(String bean : beans)
-            System.out.println(bean);
+        for(int i = 0; i < beans.length; i++)
+            System.out.println(i+1 + ") " + beans[i]);
 
         System.out.println(
                 "   _____             ____              __  \n" +
