@@ -6,6 +6,8 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.Environment;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
+import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
+import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.JpaVendorAdapter;
@@ -28,7 +30,7 @@ public class HibernateConfig {
     @Autowired
     private Environment environment;
 
-    @Bean
+//    @Bean
     public DataSource dataSource() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setDriverClassName(environment.getRequiredProperty("spring.datasource.driverClassName"));
@@ -37,6 +39,13 @@ public class HibernateConfig {
         dataSource.setPassword(environment.getRequiredProperty("spring.datasource.password"));
 
         return dataSource;
+    }
+
+    @Bean
+    public DataSource h2DataSource(){
+        return new EmbeddedDatabaseBuilder()
+                .setType(EmbeddedDatabaseType.H2)
+                .addScript("org/springframework/session/jdbc/schema-h2.sql").build();
     }
 
     @Bean

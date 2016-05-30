@@ -1,4 +1,4 @@
-package ir.arcinc.sunbook.servlet3;
+package ir.arcinc.sunbook.config.initializers;
 
 import ir.arcinc.sunbook.config.SpringHTTPSessionConfig;
 import org.springframework.session.web.context.AbstractHttpSessionApplicationInitializer;
@@ -6,8 +6,8 @@ import org.springframework.session.web.context.AbstractHttpSessionApplicationIni
 /**
  * Created by tahae on 5/21/2016.
  */
-public class SessionInitializer extends AbstractHttpSessionApplicationInitializer {
-    public SessionInitializer(){
+public class SpringSessionInitializer extends AbstractHttpSessionApplicationInitializer {
+    public SpringSessionInitializer(){
         super(SpringHTTPSessionConfig.class);
     }
 }

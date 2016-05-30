@@ -1,28 +1,35 @@
 package ir.arcinc.sunbook.datamodel;
 
+import ir.arcinc.sunbook.datamodel.AbstractUser;
+import ir.arcinc.sunbook.datamodel.Company;
+import ir.arcinc.sunbook.datamodel.Project;
+import ir.arcinc.sunbook.datamodel.Skill;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
-import java.util.List;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.Set;
 
 /**
  * Created by tahae on 5/21/2016.
  */
 @Entity
-public class User {
+public class User extends AbstractUser {
+
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
     private String firstName, lastName;
     @ManyToOne
     private Company company;
-
     @Column(unique = true)
-    @NotNull
     private String email;
-
-    public String password;
+    @Column(unique = true)
+    private int phoneNumber;
     private String naghsh , city , ostan , university , field , userName;
     @ManyToMany
     @JoinTable(name="EMP_SKILL",joinColumns=@JoinColumn(name="EMP_ID", referencedColumnName="id"),inverseJoinColumns=@JoinColumn(name="SKILL_ID", referencedColumnName="id"))
@@ -33,12 +40,12 @@ public class User {
     private Set<Project> projects;
 
     public User(String firstName, String lastName, String userName, Company company, String email, String password, String naghsh, Set<Project> projects , String city , String ostan  , String university ,String field, Set<Skill> skills) {
+        super(userName, password, Arrays.asList(new SimpleGrantedAuthority("USER")));
         this.firstName = firstName;
         this.lastName = lastName;
         this.userName = userName;
         this.company = company;
         this.email = email;
-        this.password = password;
         this.naghsh = naghsh;
         this.projects = projects;
         this.city = city;
@@ -46,6 +53,18 @@ public class User {
         this.university = university;
         this.field = field;
         this.skills = skills;
+    }
+
+    public User(String username, String password, Collection<? extends GrantedAuthority> authorities, String email, int phoneNumber) {
+        super(username, password, authorities);
+        this.email = email;
+        this.phoneNumber = phoneNumber;
+    }
+
+    public User(String username, String password, boolean enabled, boolean accountNonExpired, boolean credentialsNonExpired, boolean accountNonLocked, Collection<? extends GrantedAuthority> authorities, String email, int phoneNumber) {
+        super(username, password, enabled, accountNonExpired, credentialsNonExpired, accountNonLocked, authorities);
+        this.email = email;
+        this.phoneNumber = phoneNumber;
     }
 
     public long getId() {
@@ -88,12 +107,12 @@ public class User {
         this.email = email;
     }
 
-    public String getPassword() {
-        return password;
+    public int getPhoneNumber() {
+        return phoneNumber;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setPhoneNumber(int phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 
 
@@ -164,12 +183,10 @@ public class User {
 
     @Override
     public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", email='" + email + '\'' +
-                ", password='" + password + "\'" +
-                '}';
+        return super.toString() +
+                "Id: " + id + ";" +
+                "Email: " + email + ";" +
+                "PhoneNumber: " + phoneNumber + ";"
+                ;
     }
 }
