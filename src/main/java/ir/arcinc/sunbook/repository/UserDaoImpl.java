@@ -15,6 +15,7 @@ import java.util.List;
  * Created by tahae on 5/21/2016.
  */
 @Repository
+@Transactional
 public class UserDaoImpl implements UserDao {
 
     @PersistenceContext

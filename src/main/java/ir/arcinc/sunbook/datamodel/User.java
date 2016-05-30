@@ -8,10 +8,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
 import javax.persistence.*;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Set;
+import java.util.*;
 
 /**
  * Created by tahae on 5/21/2016.
@@ -20,30 +17,33 @@ import java.util.Set;
 public class User extends AbstractUser {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.TABLE)
     private long id;
 
     private String firstName, lastName;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.MERGE)
     private Company company;
     @Column(unique = true)
     private String email;
     @Column(unique = true)
     private int phoneNumber;
-    private String naghsh , city , ostan , university , field , userName;
-    @ManyToMany
+    private String naghsh , city , ostan , university , field;
+    @ManyToMany(cascade = CascadeType.MERGE)
     @JoinTable(name="EMP_SKILL",joinColumns=@JoinColumn(name="EMP_ID", referencedColumnName="id"),inverseJoinColumns=@JoinColumn(name="SKILL_ID", referencedColumnName="id"))
     private Set<Skill> skills;
 
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.MERGE)
     @JoinTable(name="EMP_PROJ",joinColumns=@JoinColumn(name="EMP_ID", referencedColumnName="id"),inverseJoinColumns=@JoinColumn(name="PROJ_ID", referencedColumnName="id"))
     private Set<Project> projects;
+
+    public User(){
+        super("empty","null",new LinkedList<>());
+    }
 
     public User(String firstName, String lastName, String userName, Company company, String email, String password, String naghsh, Set<Project> projects , String city , String ostan  , String university ,String field, Set<Skill> skills) {
         super(userName, password, Arrays.asList(new SimpleGrantedAuthority("USER")));
         this.firstName = firstName;
         this.lastName = lastName;
-        this.userName = userName;
         this.company = company;
         this.email = email;
         this.naghsh = naghsh;
@@ -89,14 +89,6 @@ public class User extends AbstractUser {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
-    }
-
-    public String getUserName() {
-        return userName;
-    }
-
-    public void setUserName(String userName) {
-        this.userName = userName;
     }
 
     public String getEmail() {

@@ -9,11 +9,13 @@ import java.util.Set;
 @Entity
 public class Skill {
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy= GenerationType.TABLE)
     private long id;
     private String name;
-    @ManyToMany(mappedBy = "skills")
+    @ManyToMany(mappedBy = "skills",cascade = CascadeType.MERGE)
     private Set<User> users;
+
+    public Skill(){}
 
     public Skill(String name) {
         this.name = name;

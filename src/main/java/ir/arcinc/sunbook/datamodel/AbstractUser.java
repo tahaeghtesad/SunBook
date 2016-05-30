@@ -161,7 +161,7 @@ public abstract class AbstractUser  implements UserDetails, CredentialsContainer
      */
     @Override
     public boolean equals(Object rhs) {
-        return rhs instanceof org.springframework.security.core.userdetails.User && username.equals(((AbstractUser) rhs).username);
+        return rhs instanceof User && username.equals(((AbstractUser) rhs).username);
     }
 
     /**

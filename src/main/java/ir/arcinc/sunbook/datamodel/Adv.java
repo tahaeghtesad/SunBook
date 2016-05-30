@@ -11,9 +11,9 @@ import java.util.Date;
 @Entity
 public class Adv {
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy= GenerationType.TABLE)
     private long id;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.MERGE)
     private Company company;
     private String ostan;
     private Date date;

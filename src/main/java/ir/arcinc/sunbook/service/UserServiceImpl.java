@@ -15,7 +15,7 @@ import java.io.Serializable;
  * Created by tahae on 5/21/2016.
  */
 @Service
-public class UserServiceImpl implements UserService, UserDetailsService {
+public class UserServiceImpl implements UserService {
 
     @Autowired
     private UserDao userDao;

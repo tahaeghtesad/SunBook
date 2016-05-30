@@ -30,7 +30,7 @@ public class HibernateConfig {
     @Autowired
     private Environment environment;
 
-//    @Bean
+    @Bean
     public DataSource dataSource() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setDriverClassName(environment.getRequiredProperty("spring.datasource.driverClassName"));
@@ -41,7 +41,7 @@ public class HibernateConfig {
         return dataSource;
     }
 
-    @Bean
+//    @Bean
     public DataSource h2DataSource(){
         return new EmbeddedDatabaseBuilder()
                 .setType(EmbeddedDatabaseType.H2)

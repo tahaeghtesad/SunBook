@@ -11,14 +11,16 @@ import java.util.Set;
 @Entity
 public class Project {
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy= GenerationType.TABLE)
     private long id;
     private String name;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.MERGE)
     private Company company;
-    @ManyToMany(mappedBy = "projects")
+    @ManyToMany(mappedBy = "projects",cascade = CascadeType.MERGE)
     private Set<User> team;
     private String exp;
+
+    public Project(){}
 
     public Project(String name, Company company, Set<User> team, String exp) {
         this.name = name;

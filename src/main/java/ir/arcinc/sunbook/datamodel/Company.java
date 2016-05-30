@@ -10,19 +10,21 @@ import java.util.*;
 public class Company {
     private String name;
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy= GenerationType.TABLE)
     private long id;
-    @OneToMany(mappedBy="company")
+    @OneToMany(mappedBy="company", cascade = CascadeType.MERGE)
     private Set<Adv> Advs;
     private String type;
     private String city;
     private String ostan;
     private String exp;
     private String manager;
-    @OneToMany(mappedBy="company")
+    @OneToMany(mappedBy="company", cascade = CascadeType.MERGE)
     private Set<Project> projects;
-    @OneToMany(mappedBy="company")
+    @OneToMany(mappedBy="company", cascade = CascadeType.MERGE)
     private Set<User> employee;
+
+    public Company(){}
 
     public Company(String name, Set<Adv> advs, String type, String city, String ostan, String exp, String manager, Set<Project> projects, Set<User> employee) {
         this.name = name;
