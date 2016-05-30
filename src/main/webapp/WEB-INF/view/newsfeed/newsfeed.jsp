@@ -61,44 +61,44 @@
         <div class="ui grid">
             <div class="twelve wide column">
                 <div class="ui piled segment">
-
-                    <div class="ui small form">
-                        <h2 class="ui dividing blue header">ایجاد آگهی</h2>
-                        <div class="three fields">
-                            <div class="required field">
-                                <label>موقعیت</label>
-                                <input placeholder="نام" type="text">
-                            </div>
-                            <div class="required field">
-                                <label>تاریخ</label>
-                                <input placeholder="تاریخ" type="text">
+                    <form action="" id="adv">
+                        <div class="ui small form">
+                            <h2 class="ui dividing blue header">ایجاد آگهی</h2>
+                            <div class="three fields">
+                                <div class="required field">
+                                    <label>موقعیت</label>
+                                    <input placeholder="نام" type="text">
+                                </div>
+                                <div class="required field">
+                                    <label>تاریخ</label>
+                                    <input placeholder="تاریخ" type="text">
+                                </div>
+                                <div class="field">
+                                    <label>انقضا</label>
+                                    <input placeholder="انقضا" type="text">
+                                </div>
                             </div>
                             <div class="field">
-                                <label>انقضا</label>
-                                <input placeholder="انقضا" type="text">
+                                <label>متن آگهی</label>
+                                <textarea name="text" placeholder="متن آگهی"></textarea>
                             </div>
-
+                            <input type="submit" class="ui centered blue submit button" value="ثبت"/>
                         </div>
-                        <div class="field">
-                            <label>متن آگهی</label>
-                            <textarea placeholder="متن آگهی"></textarea>
-                        </div>
-
-                        <div class="ui centered blue submit button">ثبت</div>
-
-                    </div>
+                    </form>
 
                 </div>
                 <div class="ui piled segment">
-                    <div class="ui small form">
-                        <h2 class="ui dividing blue header">ایجاد پست</h2>
-                        <div class="field">
-                            <label>متن</label>
-                            <textarea placeholder="متن"></textarea>
+                    <form action="#" id="post">
+                        <div class="ui small form">
+                            <h2 class="ui dividing blue header">ایجاد پست</h2>
+                            <div class="field">
+                                <label>متن</label>
+                                <textarea name="text" class="text" placeholder="متن"></textarea>
+                            </div>
+                            <input type="submit" class="ui centered blue submit button" value="ثبت"/>
+                            <h2 class="ui dividing blue header"></h2>
                         </div>
-                        <div class="ui centered blue submit button">ثبت</div>
-                        <h2 class="ui dividing blue header"></h2>
-                    </div>
+                    </form>
                 </div>
                 <div class="ui large feed">
                     <c:forEach items="${posts}" var="post">
@@ -143,7 +143,7 @@
                                         <p><a href="#"><i class="red circle icon"></i></a> یک عدد منشی خانم</p>
                                     </div>
                                     <div class="meta">
-                                        <a class="like"><i class="like icon"></i>1,353</a>
+                                        <a class="like"><i class="like icon"></i><strong>1,353</strong><input type="hidden" value="${post.id}"></a>
                                     </div>
                                 </div>
                             </div>
@@ -218,6 +218,65 @@
             </div>
         </div>
     </div>
+
+<script type="javascript">
+    $(document).ready(function () {
+        $('#post').submit(function (e) {
+            e.preventDefault();
+            var text = $('#post input[name="text"]').first().val();
+            $.ajax({
+                type: 'POST',
+                url: '/newsfeed/post',
+                data: {'text' : text},
+                success: function (data) {
+                    if (data == true){
+                        $('.ui.large.feed').prepend(
+                                '<div class="event">' +
+                                '<div class="label">'+
+                                '<img src="${pageContext.request.contextPath}/resources/img/image.png" alt="User Profile">'+
+                                '</div>' +
+                                '<div class="content">'+
+                                '<div class="summary">'+
+                                '<a href="#">'+
+                                ${user.firstName} +
+                                '</a>'+
+                                'گفت: '+
+                                '<div class="date">'+
+                                new Date()+
+                                '</div>'+
+                                '</div>'+
+                                '<div class="extra text">'+
+                                text +
+                                '</div>'+
+                                '<div class="meta">'+
+                                '<a class="like">'+
+                                '<i class="like icon"></i> 0 لایک'+
+                                '</a>'+
+                                '</div>'+
+                                '</div>'+
+                                '</div>');
+                    }
+                }
+            });
+        });
+        $('a.like').click(function (e) {
+            e.preventDefault();
+            var id = $(this).child('input').val();
+            var likeCount = $(this).child('strong').text();
+
+            $.ajax({
+                type: 'POST',
+                url: '/newsfeed/like/' + id,
+                data: {'text' : text},
+                success: function (data) {
+                    if (data == true){
+                        $(this).child('strong').text(likeCount + 1);
+                    }
+                }
+            });
+        });
+    });
+</script>
 
 </body>
 

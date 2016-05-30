@@ -10,10 +10,11 @@ import ir.arcinc.sunbook.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.Collection;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -34,7 +35,7 @@ public class NewsFeedController {
     private CommentService commentService;
 
     @RequestMapping("/home")
-    private ModelAndView home(){
+    public ModelAndView home(){
 
 //        User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         User currentUser = userService.find(0L);
@@ -47,6 +48,31 @@ public class NewsFeedController {
             comments.put(post,commentService.getCommentsForPost(post));
         }
         mav.addObject("comments",comments);
+        mav.addObject("user",currentUser);
         return mav;
+    }
+
+    @RequestMapping(value = "/post", method = RequestMethod.POST)
+    public boolean createSimplePost(@RequestBody String text){
+        //        User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User currentUser = userService.find(0L);
+
+        AbstractPost post = new SimplePost(currentUser,new Date(),text);
+        try{
+            postService.create(post);
+            return true;
+        } catch (Exception e){
+            return false;
+        }
+    }
+
+    @RequestMapping(value = "/like/{postId}",method = RequestMethod.POST)
+    public @ResponseBody boolean like(@ModelAttribute long postId){
+        //        User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User currentUser = userService.find(0L);
+
+        AbstractPost post = postService.find(postId);
+
+        return postService.like(currentUser,post);
     }
 }
