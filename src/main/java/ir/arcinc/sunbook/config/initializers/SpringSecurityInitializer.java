@@ -1,4 +1,4 @@
-/*package ir.arcinc.sunbook.config.initializers;
+package ir.arcinc.sunbook.config.initializers;
 
 import ir.arcinc.sunbook.repository.UserDao;
 import ir.arcinc.sunbook.repository.UserDaoImpl;
@@ -18,4 +18,3 @@ public class SpringSecurityInitializer extends AbstractSecurityWebApplicationIni
     }
 
 }
-*/

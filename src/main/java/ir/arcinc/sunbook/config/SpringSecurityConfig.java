@@ -19,7 +19,7 @@ import java.util.List;
  * Created by tahae on 5/26/2016.
  */
 @Configuration
-@EnableWebSecurity
+//@EnableWebSecurity
 public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
@@ -49,7 +49,7 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .authorizeRequests()
                     .antMatchers("/resources/**","/account/**","/").permitAll()
-                    .antMatchers("/**").authenticated()
+                    .antMatchers("/**").permitAll()//.authenticated()
                 //TODO should add details for User and Company
                 .and().formLogin()
                     .usernameParameter("username")
