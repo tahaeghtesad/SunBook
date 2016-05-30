@@ -1,18 +1,41 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <!DOCTYPE html>
-<html lang="en">
+<html>
+
 <head>
-    <meta charset="UTF-8">
-    <title>خورشیدکار</title>
+    <meta charset="utf-8" />
 
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/semantic/semantic.rtl.min.css">
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/site.css">
     <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery-2.2.2.min.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/resources/semantic/semantic.min.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/site.js"></script>
+    <title>جزئیات آگهی</title>
+
+    <style type="text/css">
+        body {
+            background-color: #f4f8f2;
+        }
+
+        .ui.menu .item img.logo {
+            margin-right: 1.5em;
+        }
+
+        .main.container {
+            margin-top: 7em;
+        }
+
+        .wireframe {
+            margin-top: 2em;
+        }
+
+        .ui.footer.segment {
+            margin: 5em 0em 0em;
+            padding: 5em 0em;
+        }
+    </style>
 </head>
 
 <body>
@@ -36,45 +59,37 @@
         <b>منو</b>
         <i class="ui icon content"></i>
     </a>
-    <a href="login.html" class="item left" id="login">
+    <a href="../unsorted/login.jsp" class="item left" id="login">
         <b>ورود</b>
         <i class="user icon"></i>
     </a>
-    <a href="pProfile.html" class="item">
-        نمایه شخصی
-        <i class="archive icon"></i>
+    <a class="item">
+        <div class="ui icon input">
+            <i class="search icon"></i>
+            <input type="text" placeholder="کند و کو">
+        </div>
     </a>
-    <a href="cProfile.html" class="item">
- نمایه شرکت
-        <i class="archive icon"></i>
-    </a>
-    <a href="newsfeed.html" class="item">
+    <a href="" class="item">
         اطلاعیه ها
         <i class="archive icon"></i>
     </a>
-    <a href="adverP.html" class="item">
-        جست و جو در آگهی ها
+    <a href="/" class="item">
+        خانه
+        <i class="home icon"></i>
     </a>
 </div>
-<div class="main pusher dimmer">
-    <div class="ui grid">
-        <img class="ui fluid image" src="${pageContext.request.contextPath}/resources/img/sun2.png" />
-    </div>
-    <div class="ui inverted vertical masthead center aligned segment">
 
-        <div class="ui text container">
-            <h1 class="ui inverted header">
-                خورشیدکار
-            </h1>
-            <div class="ui big search">
-                <div class="ui icon input">
-                    <input class="prompt" type="text" placeholder="آگهی استخدام">
-                    <i class="search icon"></i>
-                </div>
-                <div class="results"></div>
-            </div>
-        </div>
+<div class="main pusher dimmer">
+
+<div class = "ui grid">
+    <div class="sixteen wide column">
+        <h2  class = "ui header">${Advertise.title}</h2>
+        <div class="four wide column"><h4>${Advertise.company.name}</h4></div>
+        <div class="four wide column"><h4>${Advertise.ostan}</h4></div>
+        <div class="four wide column"><h4>${Advertise.date}</h4></div>
+        <h4>${Advertise.text}</h4>
     </div>
+</div>
 </div>
 </body>
 

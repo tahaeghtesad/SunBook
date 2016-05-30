@@ -1,8 +1,11 @@
 package ir.arcinc.sunbook;
 
+import ir.arcinc.sunbook.datamodel.Adv;
 import ir.arcinc.sunbook.datamodel.User;
 import ir.arcinc.sunbook.repository.UserDao;
 import ir.arcinc.sunbook.repository.UserDaoImpl;
+import ir.arcinc.sunbook.service.AdvService;
+import ir.arcinc.sunbook.service.AdvServiceImpl;
 import ir.arcinc.sunbook.service.UserService;
 import ir.arcinc.sunbook.service.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,5 +48,14 @@ public class Application{
                 "/____/\\__,_/_/ /_/_____/\\____/\\____/_/|_|  \n" +
                 "                                           "
         );
+        AdvService service = ctx.getBean(AdvService.class);
+        Adv adv = new Adv();
+        adv.setOstan("tehran");
+        adv.setSalaryType(1);
+        adv.setType(1);
+        service.create(adv);
+
+        service.find((long) 1);
+        System.out.println(adv.getOstan());
     }
 }

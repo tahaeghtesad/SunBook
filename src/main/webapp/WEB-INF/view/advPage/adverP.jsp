@@ -1,28 +1,35 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html>
 
 <head>
-    <meta charset="utf-8" />
-    <link rel="stylesheet" type="text/css" href="assets/semantic/semantic.rtl.min.css">
-    <link rel="stylesheet" type="text/css" href="assets/css/site.css">
-    <script type="text/javascript" src="assets/js/jquery-2.2.2.min.js"></script>
-    <script type="text/javascript" src="assets/semantic/semantic.min.js"></script>
-    <script type="text/javascript" src="assets/js/site.js"></script>
+    <meta charset="utf-8"/>
+    <link rel="stylesheet" type="text/css"
+          href="${pageContext.request.contextPath}/resources/semantic/semantic.rtl.min.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/site.css">
+    <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery-2.2.2.min.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/resources/semantic/semantic.min.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/site.js"></script>
     <title>صفحه کاربری</title>
 
     <style type="text/css">
         body {
             background-color: #f4f8f2;
         }
+
         .ui.menu .item img.logo {
             margin-right: 1.5em;
         }
+
         .main.container {
             margin-top: 7em;
         }
+
         .wireframe {
             margin-top: 2em;
         }
+
         .ui.footer.segment {
             margin: 5em 0em 0em;
             padding: 5em 0em;
@@ -52,7 +59,7 @@
         <b>منو</b>
         <i class="ui icon content"></i>
     </a>
-    <a href="login.jsp" class="item left" id="login">
+    <a href="../unsorted/login.jsp" class="item left" id="login">
         <b>ورود</b>
         <i class="user icon"></i>
     </a>
@@ -76,18 +83,23 @@
 <div class="main pusher dimmer">
     <div class="ui grid">
         <div class="twelve wide column">
-            <h2 class="ui dividing gray header">آگهی ها</h2>
             <div class="ui text container">
-                <h3 class="ui header">
-                    استخدام برنامه نویس مسلط به C# و ASP.net
-                </h3>
-                <h4 class="ui header">تهران
-                </h4><h4 class="ui header">
-                1395/1/20
-            </h4><br/>
-                <p>متن آگهی</p>
-                <h2 class="ui dividing gray header"></h2>
+                <c:forEach items="${list}" var="element">
+                    <div class = "ui piled segment grid">
+                        <div class="sixteen wide column">
+                            <a href="<c:url value='/advPage/adv/${element.id}' />">
+                             <h3  class = "ui header blue"><c:out value="${element.title}" /></h3>
+                            </a>
+                            <div class="four wide column"><c:out value="${element.company.name}" /></div>
+                            <div class="four wide column"><c:out value="${element.date}" /></div>
+                            <div class="four wide column"><c:out value="${element.type}" /></div>
+                        </div>
+                    </div>
+                </c:forEach>
             </div>
+
+            <br/>
+            <br/>
             <div class="ui small form">
                 <h2 class="ui dividing grey header"></h2>
                 <div class="field">
@@ -103,12 +115,13 @@
         <div class="ui vertical divider"><i class="spinner icon"></i></div>
         <div class="four wide column">
             <div class="ui vertical bordered secondary accordion menu">
-                <a class="item" >
+                <a class="item">
                     <h4 class="ui blue header">بر اساس</h4>
                 </a>
                 <a class="item">
-                    <div class=" title"> <i class="dropdown icon"></i>
-                        استان</div>
+                    <div class=" title"><i class="dropdown icon"></i>
+                        استان
+                    </div>
                     <div class=" content">
                         <div class="item" data-value="AS">آذربایجان شرقی</div>
                         <div class="item" data-value="AQ">آذربایجان غربی</div>
@@ -118,9 +131,9 @@
                         <div class="item" data-value="Ilam">ایلام</div>
                         <div class="item" data-value="Bushehr">بوشهر</div>
                         <div class="item" data-value="Tehran">تهران</div>
-                        <div class="item" data-value="Bakhtiari">	چهارمحال و بختیاری</div>
+                        <div class="item" data-value="Bakhtiari"> چهارمحال و بختیاری</div>
                         <div class="item" data-value="KhJonubi">خراسان جنوبی</div>
-                        <div class="item" data-value="KhRazavi">	خراسان رضوی</div>
+                        <div class="item" data-value="KhRazavi"> خراسان رضوی</div>
                         <div class="item" data-value="KhShomali">خراسان شمالی</div>
                         <div class="item" data-value="Khuzestan">خوزستان</div>
                         <div class="item" data-value="Zanjan">زنجان</div>
@@ -129,23 +142,23 @@
                         <div class="item" data-value="Fars">فارس</div>
                         <div class="item" data-value="Ghazvin">قزوین</div>
                         <div class="item" data-value="Ghom">قم</div>
-                        <div class="item" data-value="Kordestan">	کردستان</div>
+                        <div class="item" data-value="Kordestan"> کردستان</div>
                         <div class="item" data-value="Kerman">کرمان</div>
                         <div class="item" data-value="Kermanshah">کرمانشاه</div>
-                        <div class="item" data-value="Kohkiluye">	کهگیلویه و بویراحمد</div>
-                        <div class="item" data-value="Golestan">	گلستان</div>
+                        <div class="item" data-value="Kohkiluye"> کهگیلویه و بویراحمد</div>
+                        <div class="item" data-value="Golestan"> گلستان</div>
                         <div class="item" data-value="Gilan">گیلان</div>
-                        <div class="item" data-value="Lorestan">	لرستان</div>
+                        <div class="item" data-value="Lorestan"> لرستان</div>
                         <div class="item" data-value="Mazandaran">مازندران</div>
                         <div class="item" data-value="Markazi">مرکزی</div>
                         <div class="item" data-value="Hormozgan">هرمزگان</div>
                         <div class="item" data-value="Hamedan">همدان</div>
-                        <div class="item" data-value="Yazd">	یزد</div>
+                        <div class="item" data-value="Yazd"> یزد</div>
 
                     </div>
                 </a>
                 <a class="item">
-                    <div class=" title"> <i class="dropdown icon"></i> تاریخ آگهی</div>
+                    <div class=" title"><i class="dropdown icon"></i> تاریخ آگهی</div>
                     <div class=" content">
                         <div class="item" data-value="h">24 ساعت گذشته</div>
                         <div class="item" data-value="w">یک هفته ی گذشته</div>
@@ -154,7 +167,7 @@
                 </a>
 
                 <a class="item">
-                    <div class=" title"> <i class="dropdown icon"></i>رشته</div>
+                    <div class=" title"><i class="dropdown icon"></i>رشته</div>
                     <div class=" content">
 
 
@@ -171,7 +184,7 @@
                     </div>
                 </a>
                 <a class="item">
-                    <div class=" title"> <i class="dropdown icon"></i>نوع حقوق</div>
+                    <div class=" title"><i class="dropdown icon"></i>نوع حقوق</div>
                     <div class=" content">
                         <div class="item" data-value="a">توافقی</div>
                         <div class="item" data-value="m">حداقل حقوق</div>
@@ -179,7 +192,7 @@
                     </div>
                 </a>
                 <a class="item">
-                    <div class=" title"> <i class="dropdown icon"></i>نوع کار</div>
+                    <div class=" title"><i class="dropdown icon"></i>نوع کار</div>
                     <div class=" content">
                         <div class="item" data-value="a">تمام وقت</div>
                         <div class="item" data-value="m">نیمه وقت</div>
@@ -189,11 +202,11 @@
 
             </div>
         </div>
-        </div>
     </div>
 </div>
+</div>
 <script language='javascript'>
-    $(document).ready(function(){
+    $(document).ready(function () {
         $('.ui.accordion').accordion();
     });
 </script>
