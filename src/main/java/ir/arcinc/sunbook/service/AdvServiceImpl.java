@@ -66,4 +66,9 @@ public class AdvServiceImpl implements AdvService{
     public List<Adv> getAdvBySalaryType(int salarytype) {
         return null;
     }
+
+    @Override
+    public List<Adv> getAllAdvs() {
+        return advDao.getAllAdvs();
+    }
 }

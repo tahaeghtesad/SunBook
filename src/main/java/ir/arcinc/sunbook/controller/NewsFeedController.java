@@ -25,9 +25,6 @@ public class NewsFeedController {
     private PostService postService;
 
     @Autowired
-    private CommentService commentService;
-
-    @Autowired
     private AdvService advService;
 
     @Autowired
@@ -43,11 +40,7 @@ public class NewsFeedController {
         ModelAndView mav = new ModelAndView("newsfeed/newsfeed");
         Collection<AbstractPost> posts = postService.getLatestPostsForUser(currentUser);
         mav.addObject("posts",posts);
-        Map<AbstractPost,Collection<Comment>> comments = new HashMap<>();
-        for (AbstractPost post : posts){
-            comments.put(post,commentService.getCommentsForPost(post));
-        }
-        mav.addObject("comments",comments);
+
         mav.addObject("user",currentUser);
         mav.addObject("adv",new Adv());
         return mav;

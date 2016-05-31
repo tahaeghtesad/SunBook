@@ -14,4 +14,5 @@ public interface AdvDao extends GenericDao<Adv,Long>{
     List<Adv> getAdvByCompany(Company company);
     List<Adv> getAdvByType(int type);
     List<Adv> getAdvBySalaryType(int salarytype);
+    List<Adv> getAllAdvs();
 }

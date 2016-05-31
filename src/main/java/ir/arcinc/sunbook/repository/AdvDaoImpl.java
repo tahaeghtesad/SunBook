@@ -45,6 +45,12 @@ public class AdvDaoImpl implements AdvDao{
     }
 
     @Override
+    public List<Adv> getAllAdvs() {
+        return em.createQuery("SELECT a FROM Adv a").getResultList();
+
+    }
+
+    @Override
     public Adv create(Adv o) {
         em.persist(o);
         em.flush();

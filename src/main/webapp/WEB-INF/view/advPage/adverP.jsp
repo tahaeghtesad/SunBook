@@ -90,7 +90,9 @@
                             <a href="<c:url value='/advPage/adv/${element.id}' />">
                              <h3  class = "ui header blue"><c:out value="${element.title}" /></h3>
                             </a>
+                            <a href="<c:url value='/profile/${element.company.id}' />">
                             <div class="four wide column"><c:out value="${element.company.name}" /></div>
+                            </a>
                             <div class="four wide column"><c:out value="${element.date}" /></div>
                             <div class="four wide column"><c:out value="${element.type}" /></div>
                         </div>

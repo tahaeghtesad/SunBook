@@ -76,89 +76,94 @@
 
 
 <div class="main pusher dimmer">
-<!-- End Of Header -->
-<div class="ui grid">
-<div class="twelve wide column">
-<div class="ui piled segment grid">
-    <div class="twelve wide column">
-        <h1 class="ui blue header">${company.name}
-            <div class="sub header">${company.type}</div>
-        </h1>
-        <h3 class="ui blue header">${company.city}
-            <div class="sub header">${company.ostan}</div>
-        </h3>
-        <p>${company.exp}</p>
-        <div class="ui icon header">
-            <i class="user icon"></i>
-            <!-- <img src="assets/img/image.png" class="ui circular image" /> -->
-            <a href="#">${company.manager} </a>
-        </div>
-    </div>
-    <div class="four wide column">
-        <img class="ui fluid circular image" src="assets/img/image.png"/>
-    </div>
-</div>
-<div class="ui piled segment">
-    <h1 class="ui dividing header">پروژه های اجرا شده</h1>
-    <div class="ui horizontal list">
-        <c:forEach items="${company.projects}" var="element">
-            <a class="item">
-                <img class="ui avatar image" src="assets/img/image.png"/>
-                <div class="content">
-                    <div class="header">
-                            ${element.name}
+    <!-- End Of Header -->
+    <div class="ui grid">
+        <div class="twelve wide column">
+            <div class="ui piled segment grid">
+                <div class="twelve wide column">
+                    <h1 class="ui blue header">${company.name}
+                        <div class="sub header">${company.type}</div>
+                    </h1>
+                    <h3 class="ui blue header">${company.city}
+                        <div class="sub header">${company.ostan}</div>
+                    </h3>
+                    <p>${company.exp}</p>
+                    <div class="ui icon header">
+                        <i class="user icon"></i>
+                        <!-- <img src="assets/img/image.png" class="ui circular image" /> -->
+                        <a href="#">${company.manager} </a>
                     </div>
-                        ${element.exp}</div>
-            </a>
-        </c:forEach>
-    </div>
-</div>
-<div class="ui piled segment">
-<h1 class="ui dividing header">برخی از کارمندان</h1>
-<div class="ui horizontal list">
-<c:forEach items="${company.employee}" var="element">
+                </div>
+                <div class="four wide column">
+                    <img class="ui fluid circular image" src="${pageContext.request.contextPath}/resources/img/image.png"/>
+                </div>
+            </div>
+            <div class="ui piled segment">
+                <h1 class="ui dividing header">پروژه های اجرا شده</h1>
+                <div class="ui horizontal list">
+                    <c:forEach items="${company.projects}" var="element">
+                        <a class="item">
+                            <img class="ui avatar image" src="${pageContext.request.contextPath}/resources/img/image.png"/>
+                            <div class="content">
+                                <div class="header">
+                                        ${element.name}
+                                </div>
+                                    ${element.exp}</div>
+                        </a>
+                    </c:forEach>
+                </div>
+            </div>
+            <div class="ui piled segment">
+                <h1 class="ui dividing header">برخی از کارمندان</h1>
+                <div class="ui horizontal list">
+                    <c:forEach items="${company.employee}" var="element">
 
-    <div class="item">
-    <img class="ui avatar image" src="assets/img/image.png"/>
-    <div class="content">
-    <div class="header">
-            ${element.firstName} ${element.lastName}                           </div>
-    ${element.naghsh}
-    </div>
-    </div>
-</c:forEach>
+                        <div class="item">
+                            <img class="ui avatar image" src="${pageContext.request.contextPath}/resources/img/image.png"/>
+                            <div class="content">
+                                <div class="header">
+                                        ${element.firstName} ${element.lastName}                           </div>
+                                    ${element.naghsh}
+                            </div>
+                        </div>
+                    </c:forEach>
 
-    </div>
-    </div>
-    </div>
-    <div class="ui vertical divider"><i class="spinner icon"></i></div>
-    <div class="four wide column">
-    <div class="ui card">
-    <div class="ui card">
-    <div class="image">
-    <img src="assets/img/image.png" alt="عکس پروفایل"/>
-    </div>
-    <div class="content">
-    <h3 class="header">${company.name}</h3>
-    <div class="meta">
-    <span class="username">${company.manager}</span>
-    </div>
-    <div class="description">
-    <div class="company">${company.name}</div>
-    <div class="awards" style="font-size: 70%;">${company.exp}</div>
-    </div>
-    </div>
-    <div class="extra content">
-    <i class="globe icon"></i>
+                </div>
+            </div>
+        </div>
+        <div class="ui vertical divider"><i class="spinner icon"></i></div>
+        <div class="four wide column">
+            <div class="ui card">
+                <div class="ui card">
+                    <div class="image">
+                        <img src="${pageContext.request.contextPath}/resources/img/image.png" alt="عکس پروفایل"/>
+                    </div>
+                    <div class="content">
+                        <h3 class="header">${company.name}</h3>
+                        <div class="meta">
+                            <span class="username">${company.manager}</span>
+                        </div>
+                        <div class="description">
+                            <div class="company">${company.name}</div>
+                            <div class="awards" style="font-size: 70%;">${company.exp}</div>
+                        </div>
+                    </div>
+                    <div class="extra content">
+                        <i class="globe icon"></i>
     <span>
         ${company.city} ${company.ostan}    </span>
-    </div>
-    </div>
-    </div>
-    </div>
+                    </div>
+                    <div class="extra content">
+    <span>
+        <a href="<c:url value='/profile/create/${element.id}' />">
+تغییر نمایه        </a>    </span>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
     <!-- Begin Of Footer -->
-    </div>
-    </body>
+</div>
+</body>
 
-    </html>
+</html>

@@ -62,11 +62,12 @@ public class Application{
         PostService postService = ctx.getBean(PostService.class);
         AdvService advService = ctx.getBean(AdvService.class);
 
-        Adv adv = new Adv();
-        adv.setOstan("tehran");
-        adv.setSalaryType(1);
-        adv.setType(1);
-//        advService.create(adv);
+        Adv adv = new Adv("java" ,new Company("اسم شرکت", "سهامی خاص", "تهران", "تهران", "همه کار", "مدیر", null, null) , "tehran" , new Date() , 1, 1, "maaaaaaaaaaatn!");
+  //      Adv adv = new Adv();
+    //    adv.setOstan("tehran");
+      //  adv.setSalaryType(1);
+        //adv.setType(1);
+      // advService.create(adv);
 
 
         Set<Project> projects = new HashSet<>();

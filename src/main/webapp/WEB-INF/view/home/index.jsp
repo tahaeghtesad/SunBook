@@ -43,10 +43,6 @@
         نمایه شخصی
         <i class="archive icon"></i>
     </a>
-    <a href="cProfile.html" class="item">
- نمایه شرکت
-        <i class="archive icon"></i>
-    </a>
     <a href="newsfeed.html" class="item">
         اطلاعیه ها
         <i class="archive icon"></i>

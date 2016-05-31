@@ -69,23 +69,23 @@
                     </div>
                     <div class=" field">
                         <label>وب سایت</label>
-                        <input placeholder="وب سایت" type="text">
+                        <form:input path="site" placeholder="وب سایت" type="text"/>
                     </div>
                 </div>
                 <div class="three fields">
                     <div class="field">
                         <label>E-mail</label>
-                        <input placeholder="E-mail" type="text">
+                        <form:input path="mail" placeholder="E-mail" type="text"/>
 
                     </div>
                     <div class="required field">
                         <label>تلفن</label>
-                        <input placeholder="تلفن" type="text">
+                        <form:input path="phone" placeholder="تلفن" type="text"/>
 
                     </div>
                     <div class=" field">
                         <label>فکس</label>
-                        <input placeholder="فکس" type="text">
+                        <form:input path="fax" placeholder="فکس" type="text"/>
 
                     </div>
                 </div>
@@ -93,59 +93,60 @@
                     <div class="four wide required field">
                         <label>استان</label>
                         <div class="ui fluid selection dropdown">
-                            <input type="hidden" name="user">
+
+                            <form:input path="ostan" type="hidden" name="ostan"/>
                             <i class="dropdown icon"></i>
                             <div class="default text">استان</div>
                             <div class="menu">
-                                <div class="item" data-value="AS">آذربایجان شرقی</div>
-                                <div class="item" data-value="AQ">آذربایجان غربی</div>
-                                <div class="item" data-value="Ardebil">اردبیل</div>
-                                <div class="item" data-value="Esfahan">اصفهان</div>
-                                <div class="item" data-value="Alborz">البرز</div>
-                                <div class="item" data-value="Ilam">ایلام</div>
-                                <div class="item" data-value="Bushehr">بوشهر</div>
-                                <div class="item" data-value="Tehran">تهران</div>
-                                <div class="item" data-value="Bakhtiari">	چهارمحال و بختیاری</div>
-                                <div class="item" data-value="KhJonubi">خراسان جنوبی</div>
-                                <div class="item" data-value="KhRazavi">	خراسان رضوی</div>
-                                <div class="item" data-value="KhShomali">خراسان شمالی</div>
-                                <div class="item" data-value="Khuzestan">خوزستان</div>
-                                <div class="item" data-value="Zanjan">زنجان</div>
-                                <div class="item" data-value="Semnan">سمنان</div>
-                                <div class="item" data-value="Sistan">سیستان و بلوچستان</div>
-                                <div class="item" data-value="Fars">فارس</div>
-                                <div class="item" data-value="Ghazvin">قزوین</div>
-                                <div class="item" data-value="Ghom">قم</div>
-                                <div class="item" data-value="Kordestan">	کردستان</div>
-                                <div class="item" data-value="Kerman">کرمان</div>
-                                <div class="item" data-value="Kermanshah">کرمانشاه</div>
-                                <div class="item" data-value="Kohkiluye">	کهگیلویه و بویراحمد</div>
-                                <div class="item" data-value="Golestan">	گلستان</div>
-                                <div class="item" data-value="Gilan">گیلان</div>
-                                <div class="item" data-value="Lorestan">	لرستان</div>
-                                <div class="item" data-value="Mazandaran">مازندران</div>
-                                <div class="item" data-value="Markazi">مرکزی</div>
-                                <div class="item" data-value="Hormozgan">هرمزگان</div>
-                                <div class="item" data-value="Hamedan">همدان</div>
-                                <div class="item" data-value="Yazd">	یزد</div>
+                                <div class="item" data-value="آذربایجان شرقی">آذربایجان شرقی</div>
+                                <div class="item" data-value="آذربایجان غربی">آذربایجان غربی</div>
+                                <div class="item" data-value="اردبیل">اردبیل</div>
+                                <div class="item" data-value="اصفهان">اصفهان</div>
+                                <div class="item" data-value="البرز">البرز</div>
+                                <div class="item" data-value="ایلام">ایلام</div>
+                                <div class="item" data-value="بوشهر">بوشهر</div>
+                                <div class="item" data-value="تهران">تهران</div>
+                                <div class="item" data-value="چهارمحال و بختیاری"> چهارمحال و بختیاری</div>
+                                <div class="item" data-value="خراسان جنوبی">خراسان جنوبی</div>
+                                <div class="item" data-value="خراسان رضوی"> خراسان رضوی</div>
+                                <div class="item" data-value="خراسان شمالی">خراسان شمالی</div>
+                                <div class="item" data-value="خوزستان">خوزستان</div>
+                                <div class="item" data-value="زنجان">زنجان</div>
+                                <div class="item" data-value="سمنان">سمنان</div>
+                                <div class="item" data-value="سیستان و بلوچستان">سیستان و بلوچستان</div>
+                                <div class="item" data-value="فارس">فارس</div>
+                                <div class="item" data-value="قزوین">قزوین</div>
+                                <div class="item" data-value="قم">قم</div>
+                                <div class="item" data-value="کردستان"> کردستان</div>
+                                <div class="item" data-value="کرمان">کرمان</div>
+                                <div class="item" data-value="کرمانشاه">کرمانشاه</div>
+                                <div class="item" data-value="کهگیلویه و بویراحمد"> کهگیلویه و بویراحمد</div>
+                                <div class="item" data-value="گلستان"> گلستان</div>
+                                <div class="item" data-value="گیلان">گیلان</div>
+                                <div class="item" data-value="لرستان"> لرستان</div>
+                                <div class="item" data-value="مازندران">مازندران</div>
+                                <div class="item" data-value="مرکزی">مرکزی</div>
+                                <div class="item" data-value="هرمزگان">هرمزگان</div>
+                                <div class="item" data-value="همدان">همدان</div>
+                                <div class="item" data-value="یزد"> یزد</div>
                             </div>
                         </div>
                     </div>
                     <div class="three wide required field">
                         <label>شهر</label>
-                        <input placeholder="شهر" type="text">
+                        <form:input path="city" placeholder="شهر" type="text"/>
 
                     </div>
                     <div class="nine wide required field">
                         <label>آدرس</label>
-                        <input placeholder="آدرس" type="text">
+                        <form:input path="addr" placeholder="آدرس" type="text">
 
                     </div>
                 </div>
                 <div class="two fields">
                     <div class="field">
                         <label>درباره ی شرکت</label>
-                        <textarea placeholder="درباره ی شرکت"></textarea>
+                        <form:textarea path="exp" placeholder="درباره ی شرکت"></form:textarea>
                     </div>
                     <div class="field">
                         <label>لوگوی شرکت</label>

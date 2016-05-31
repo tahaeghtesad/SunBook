@@ -30,14 +30,7 @@ public class AdvPageController {
     private AdvService advService;
     @RequestMapping(value = "/adverP" , method = RequestMethod.GET)
     public ModelAndView advPage(){
-        List<Adv> advList = new ArrayList<Adv>();
-        Company comp = new Company("اسم شرکت", "سهامی خاص", "تهران", "تهران", "همه کار میکنیم! :دی", "مدیر", new HashSet<Project>(), new HashSet<User>());
-        Adv adv1 = new Adv("برنامه نویس جاوا" , comp , "تهران" , new Date(), 1,1,"متن متن متن متن متن");
-        adv1.setId((long) 2);
-        advList.add(adv1);
-        Adv adv2 = new Adv("برنامه نویس جاوا2" , comp , "تهران" , new Date(), 1,1,"متن متن متن متن متن222222");
-        adv2.setId((long)3);
-        advList.add(adv2);
+        List<Adv> advList = advService.getAllAdvs();
         ModelAndView advsPage = new ModelAndView("/advPage/adverP" , "list" , advList);
         return advsPage;
     }

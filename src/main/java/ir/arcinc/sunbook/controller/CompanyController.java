@@ -18,27 +18,33 @@ import java.util.Set;
  */
 
 @Controller
-@RequestMapping("/company")
+@RequestMapping("/profile")
 public class CompanyController {
     @Autowired
     private CompService compService;
-    @RequestMapping(value = "/profile/{id}" , method = RequestMethod.GET)
+    @RequestMapping(value = "/{id}" , method = RequestMethod.GET)
     public ModelAndView cProfilePage(@PathVariable long id){
+        System.out.print(id);
         Company c = compService.find(id);
+        //System.out.print(c.getName());
+        System.out.println(c);
         return new ModelAndView("company/cProfile" , "company" , c);
     }
 
-    @RequestMapping(value = "/create", method = RequestMethod.GET)
+    @RequestMapping(value = "/create/{id}", method = RequestMethod.GET)
     @ModelAttribute("company")
-    public ModelAndView showForm(){
-        return new ModelAndView("company/cProfileForm","company",new Company());
+    public ModelAndView showForm(@PathVariable long id){
+        Company c = compService.find(id);
+        return new ModelAndView("company/cProfileForm","company",c);
     }
 
-    @RequestMapping(value = "/create",method = RequestMethod.POST)
+    @RequestMapping(value = "/create/{id}",method = RequestMethod.POST)
     @ResponseBody
-    public long submitForm(@ModelAttribute Company c){
+    public ModelAndView submitForm(@ModelAttribute Company c , @PathVariable long id){
+        c.setId(id);
+   //     compService.update(c);
         System.out.println(c.getName());
-        compService.create(c);
-        return c.getId();
+
+        return new ModelAndView("company/cProfile" , "company" , c);
     }
 }
