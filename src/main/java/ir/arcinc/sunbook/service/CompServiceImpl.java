@@ -15,21 +15,21 @@ public class CompServiceImpl implements  CompService {
 
     @Override
     public Company create(Company o) {
-        return null;
+        return compDao.create(o);
     }
 
     @Override
     public Company find(Long id) {
-        return null;
+        return compDao.find(id);
     }
 
     @Override
     public void update(Company o) {
-
+        compDao.update(o);
     }
 
     @Override
     public void delete(Company o) {
-
+        compDao.delete(o);
     }
 }
