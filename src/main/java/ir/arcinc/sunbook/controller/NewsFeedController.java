@@ -1,9 +1,7 @@
 package ir.arcinc.sunbook.controller;
 
-import ir.arcinc.sunbook.datamodel.AbstractPost;
-import ir.arcinc.sunbook.datamodel.Comment;
-import ir.arcinc.sunbook.datamodel.SimplePost;
-import ir.arcinc.sunbook.datamodel.User;
+import ir.arcinc.sunbook.datamodel.*;
+import ir.arcinc.sunbook.service.AdvService;
 import ir.arcinc.sunbook.service.CommentService;
 import ir.arcinc.sunbook.service.PostService;
 import ir.arcinc.sunbook.service.UserService;
@@ -33,6 +31,9 @@ public class NewsFeedController {
 
     @Autowired
     private CommentService commentService;
+
+    @Autowired
+    private AdvService advService;
 
     @RequestMapping("/home")
     public ModelAndView home(){
@@ -67,12 +68,17 @@ public class NewsFeedController {
     }
 
     @RequestMapping(value = "/like/{postId}",method = RequestMethod.POST)
-    public @ResponseBody boolean like(@ModelAttribute long postId){
+    public @ResponseBody boolean like(@PathVariable long postId){
         //        User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         User currentUser = userService.find(0L);
 
         AbstractPost post = postService.find(postId);
 
         return postService.like(currentUser,post);
+    }
+
+    @RequestMapping(value = "/advertise",method = RequestMethod.POST)
+    public @ResponseBody boolean advertise(@ModelAttribute Adv adv){
+        return true;
     }
 }

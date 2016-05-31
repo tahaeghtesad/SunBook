@@ -1,15 +1,19 @@
-<!DOCTYPE html>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>فرم نمایه شرکت</title>
 
 
-    <link rel="stylesheet" type="text/css" href="assets/semantic/semantic.rtl.min.css">
-    <link rel="stylesheet" type="text/css" href="assets/css/site.css">
-    <script type="text/javascript" src="assets/js/jquery-2.2.2.min.js"></script>
-    <script type="text/javascript" src="assets/semantic/semantic.min.js"></script>
-    <script type="text/javascript" src="assets/js/site.js"></script>
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/semantic/semantic.rtl.min.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/site.css">
+    <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery-2.2.2.min.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/resources/semantic/semantic.min.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/site.js"></script>
 
 
 </head>
@@ -56,12 +60,12 @@
 <div class="main pusher dimmer">
     <div class="ui grid">
         <div class="eight wide centered column">
-            <div class="ui small form">
+            <form:form method="post" modelAttribute="company" class="ui small form">
                 <h2 class="ui dividing blue header">تغییر نمایه</h2>
                 <div class="two fields">
                     <div class="required field">
                         <label>نام</label>
-                        <input placeholder="نام" type="text">
+                        <form:input path="name" placeholder="نام"/>
                     </div>
                     <div class=" field">
                         <label>وب سایت</label>
@@ -145,15 +149,15 @@
                     </div>
                     <div class="field">
                         <label>لوگوی شرکت</label>
-                        <img class="ui tiny image" src="assets/image/image.png">
+                        <img class="ui tiny image" src="${pageContext.request.contextPath}/resources/img/image.png">
                         <br/>
                         <input placeholder="" type="text">
                     </div>
 
                 </div>
 
-                <div class="ui centered blue submit button">ثبت</div>
-            </div>
+                <input type="submit" class="ui centered blue submit button" value="ثبت"/>
+            </form:form>
         </div>
     </div>
 </div>
