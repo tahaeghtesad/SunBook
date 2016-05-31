@@ -14,9 +14,9 @@ public class Project {
     @GeneratedValue(strategy= GenerationType.TABLE)
     private long id;
     private String name;
-    @ManyToOne(cascade = CascadeType.MERGE)
+    @ManyToOne(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
     private Company company;
-    @ManyToMany(mappedBy = "projects",cascade = CascadeType.MERGE)
+    @ManyToMany(mappedBy = "projects",cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
     private Set<User> team;
     private String exp;
 

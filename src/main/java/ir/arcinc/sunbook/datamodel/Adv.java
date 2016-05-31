@@ -13,7 +13,7 @@ public class Adv {
     @Id
     @GeneratedValue(strategy= GenerationType.TABLE)
     private long id;
-    @ManyToOne(cascade = CascadeType.MERGE)
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Company company;
     private String ostan;
     private Date date;
@@ -97,5 +97,19 @@ public class Adv {
 
     public void setId(long id) {
         this.id = id;
+    }
+
+    @Override
+    public String toString() {
+        return "Adv{" +
+                "id=" + id +
+                ", company=" + company +
+                ", ostan='" + ostan + '\'' +
+                ", date=" + date +
+                ", salaryType=" + salaryType +
+                ", type=" + type +
+                ", text='" + text + '\'' +
+                ", title='" + title + '\'' +
+                '}';
     }
 }

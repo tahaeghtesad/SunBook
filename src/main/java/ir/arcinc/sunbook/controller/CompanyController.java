@@ -38,7 +38,7 @@ public class CompanyController {
     @ResponseBody
     public long submitForm(@ModelAttribute Company c){
         System.out.println(c.getName());
-//        compService.create(c);
+        compService.create(c);
         return c.getId();
     }
 }

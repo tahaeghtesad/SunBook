@@ -1,7 +1,7 @@
 package ir.arcinc.sunbook.datamodel;
 
 import javax.persistence.*;
-import java.util.*;
+import java.util.Set;
 
 /**
  * Created by Zohreh on 5/25/2016.
@@ -12,23 +12,20 @@ public class Company {
     @Id
     @GeneratedValue(strategy= GenerationType.TABLE)
     private long id;
-    @OneToMany(mappedBy="company", cascade = CascadeType.MERGE)
-    private Set<Adv> Advs;
     private String type;
     private String city;
     private String ostan;
     private String exp;
     private String manager;
-    @OneToMany(mappedBy="company", cascade = CascadeType.MERGE)
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Set<Project> projects;
-    @OneToMany(mappedBy="company", cascade = CascadeType.MERGE)
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Set<User> employee;
 
     public Company(){}
 
-    public Company(String name, Set<Adv> advs, String type, String city, String ostan, String exp, String manager, Set<Project> projects, Set<User> employee) {
+    public Company(String name, String type, String city, String ostan, String exp, String manager, Set<Project> projects, Set<User> employee) {
         this.name = name;
-        Advs = advs;
         this.type = type;
         this.city = city;
         this.ostan = ostan;
@@ -52,14 +49,6 @@ public class Company {
 
     public void setId(long id) {
         this.id = id;
-    }
-
-    public Set<Adv> getAdvs() {
-        return Advs;
-    }
-
-    public void setAdvs(Set<Adv> advs) {
-        Advs = advs;
     }
 
     public String getType() {

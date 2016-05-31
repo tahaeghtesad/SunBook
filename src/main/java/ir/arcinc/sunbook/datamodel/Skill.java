@@ -12,7 +12,7 @@ public class Skill {
     @GeneratedValue(strategy= GenerationType.TABLE)
     private long id;
     private String name;
-    @ManyToMany(mappedBy = "skills",cascade = CascadeType.MERGE)
+    @ManyToMany(mappedBy = "skills",cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
     private Set<User> users;
 
     public Skill(){}

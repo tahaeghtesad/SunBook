@@ -72,7 +72,7 @@ public class Application{
         Set<Project> projects = new HashSet<>();
         Set<User> team = new HashSet<>();
         Set<Skill> skills = new HashSet<>();
-        Company comp = new Company("اسم شرکت2", new HashSet<>(), "سهامی خاص", "تهران", "تهران", "همه کار میکنیم! :دی", "مدیر", projects, team);
+        Company comp = new Company("اسم شرکت2", "سهامی خاص", "تهران", "تهران", "همه کار میکنیم! :دی", "مدیر", projects, team);
         Project project = new Project("پروژه 1" , comp , team , "توضیییییییییییییح");
         User u = userService.find(2L);
         AbstractPost p = new SimplePost(u,new Date(),"سلام، برو بمیر");

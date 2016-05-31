@@ -21,18 +21,18 @@ public class User extends AbstractUser {
     private long id;
 
     private String firstName, lastName;
-    @ManyToOne(cascade = CascadeType.MERGE)
+    @ManyToOne(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
     private Company company;
     @Column(unique = true)
     private String email;
     @Column(unique = true)
     private int phoneNumber;
     private String naghsh , city , ostan , university , field;
-    @ManyToMany(cascade = CascadeType.MERGE)
+    @ManyToMany(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
     @JoinTable(name="EMP_SKILL",joinColumns=@JoinColumn(name="EMP_ID", referencedColumnName="id"),inverseJoinColumns=@JoinColumn(name="SKILL_ID", referencedColumnName="id"))
     private Set<Skill> skills;
 
-    @ManyToMany(cascade = CascadeType.MERGE)
+    @ManyToMany(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
     @JoinTable(name="EMP_PROJ",joinColumns=@JoinColumn(name="EMP_ID", referencedColumnName="id"),inverseJoinColumns=@JoinColumn(name="PROJ_ID", referencedColumnName="id"))
     private Set<Project> projects;
 
@@ -106,8 +106,6 @@ public class User extends AbstractUser {
     public void setPhoneNumber(int phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
-
-
 
     public Company getCompany() {
         return company;

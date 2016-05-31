@@ -1,11 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 
 <head>
     <meta charset="utf-8" />
+    <meta name="_csrf" content="${_csrf.token}"/>
+    <meta name="_csrf_header" content="${_csrf.headerName}"/>
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/semantic/semantic.rtl.min.css">
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/site.css">
     <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery-2.2.2.min.js"></script>
@@ -61,34 +64,31 @@
         <div class="ui grid">
             <div class="twelve wide column">
                 <div class="ui piled segment">
-                    <form action="" id="adv">
-                        <div class="ui small form">
-                            <h2 class="ui dividing blue header">ایجاد آگهی</h2>
-                            <div class="three fields">
-                                <div class="required field">
-                                    <label>موقعیت</label>
-                                    <input placeholder="نام" type="text">
-                                </div>
-                                <div class="required field">
-                                    <label>تاریخ</label>
-                                    <input placeholder="تاریخ" type="text">
-                                </div>
-                                <div class="field">
-                                    <label>انقضا</label>
-                                    <input placeholder="انقضا" type="text">
-                                </div>
+                    <form:form action="/nesfeed/advertise" method="post" modelAttribute="adv" class="ui small form" id="advForm">
+                        <h2 class="ui dividing blue header">ایجاد آگهی</h2>
+                        <div class="three fields">
+                            <div class="required field">
+                                <label>موقعیت</label>
+                                <form:input path="ostan" placeholder="مکان"/>
+                            </div>
+                            <div class="required field">
+                                <label>دستمزد</label>
+                                <form:input path="salaryType" placeholder="دستمزد"/>
                             </div>
                             <div class="field">
-                                <label>متن آگهی</label>
-                                <textarea name="text" placeholder="متن آگهی"></textarea>
+                                <label>انقضا</label>
+                                <form:input path="date" placeholder="انقضا" type="text"/>
                             </div>
-                            <input type="submit" class="ui centered blue submit button" value="ثبت"/>
                         </div>
-                    </form>
-
+                        <div class="field">
+                            <label>متن آگهی</label>
+                            <form:textarea path="text" placeholder="متن آگهی" />
+                        </div>
+                        <input type="submit" class="ui centered blue submit button" value="ثبت"/>
+                    </form:form>
                 </div>
                 <div class="ui piled segment">
-                    <form action="#" id="post">
+                    <form:form action="/newsfeed/post" id="postForm">
                         <div class="ui small form">
                             <h2 class="ui dividing blue header">ایجاد پست</h2>
                             <div class="field">
@@ -98,7 +98,7 @@
                             <input type="submit" class="ui centered blue submit button" value="ثبت"/>
                             <h2 class="ui dividing blue header"></h2>
                         </div>
-                    </form>
+                    </form:form>
                 </div>
                 <div class="ui large feed">
                     <c:forEach items="${posts}" var="post">
@@ -119,7 +119,7 @@
                                     </div>
                                     <div class="meta">
                                         <a class="like">
-                                            <i class="like icon"></i> ${post.likes.size()} لایک
+                                            <i class="like icon"></i><i class="count">${post.likes.size()}</i><input type="hidden" value="${post.id}">
                                         </a>
                                     </div>
                                 </div>
@@ -219,59 +219,59 @@
         </div>
     </div>
 
-<script type="javascript">
+<script type="text/javascript">
     $(document).ready(function () {
-        $('#post').submit(function (e) {
+        $('#postForm').submit(function (e) {
             e.preventDefault();
-            var text = $('#post input[name="text"]').first().val();
+            var text = $(this).find('textarea').val();
+            var csrfToken = $("meta[name='_csrf']").attr("content");
+            var csrfHeader = $("meta[name='_csrf_header']").attr("content");
             $.ajax({
                 type: 'POST',
                 url: '/newsfeed/post',
-                data: {'text' : text},
+                data: {
+                    text : text
+                },
+                beforeSend: function (xhr) {
+                    xhr.setRequestHeader(csrfHeader, csrfToken);
+                },
                 success: function (data) {
                     if (data == true){
-                        $('.ui.large.feed').prepend(
-                                '<div class="event">' +
-                                '<div class="label">'+
-                                '<img src="${pageContext.request.contextPath}/resources/img/image.png" alt="User Profile">'+
-                                '</div>' +
-                                '<div class="content">'+
-                                '<div class="summary">'+
-                                '<a href="#">'+
-                                ${user.firstName} +
-                                '</a>'+
-                                'گفت: '+
-                                '<div class="date">'+
-                                new Date()+
-                                '</div>'+
-                                '</div>'+
-                                '<div class="extra text">'+
-                                text +
-                                '</div>'+
-                                '<div class="meta">'+
-                                '<a class="like">'+
-                                '<i class="like icon"></i> 0 لایک'+
-                                '</a>'+
-                                '</div>'+
-                                '</div>'+
-                                '</div>');
+                        location.reload();
                     }
                     $(this).trigger('reset');
                 }
             });
         });
-        $('a.like').click(function (e) {
+        $('#advForm').submit(function (e) {
             e.preventDefault();
-            var id = $(this).child('input').val();
-            var likeCount = $(this).child('strong').text();
-
+            var content = $(this).find('textarea').val();
+            var target = "/newsfeed/advertise";
+            var csrfToken = $("meta[name='_csrf']").attr("content");
+            var csrfHeader = $("meta[name='_csrf_header']").attr("content");
             $.ajax({
                 type: 'POST',
+                url: target,
+                data: {
+                    text: content
+                },
+                beforeSend: function (xhr) {
+                    xhr.setRequestHeader(csrfHeader, csrfToken);
+                },
+                success: function (data) {
+                    location.reload();
+                }
+            });
+        });
+        $('a.like').on('click', function (e) {
+            var id = $(this).children('input').val();
+            var likeCount = parseInt($(this).text());
+            $.ajax({
+                type: 'GET',
                 url: '/newsfeed/like/' + id,
-                data: {'text' : text},
                 success: function (data) {
                     if (data == true){
-                        $(this).child('strong').text(likeCount + 1);
+                        $(this).children('i.count').text(likeCount + 1);
                     }
                 }
             });

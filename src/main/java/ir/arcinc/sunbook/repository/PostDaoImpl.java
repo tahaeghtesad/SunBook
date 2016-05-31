@@ -24,7 +24,7 @@ public class PostDaoImpl implements PostDao {
     @Override
     public Collection<AbstractPost> getLatestPostsForUser(User user, int page, int count) {
 //        String hql = "SELECT p FROM SimplePost p WHERE p.poster IN (SELECT u FROM User u WHERE u=:u) OR p.poster=:u ORDER BY p.creationDate";
-        String hql = "SELECT p FROM SimplePost p";
+        String hql = "SELECT p FROM SimplePost p ORDER BY p.creationDate DESC";
         Query q = em.createQuery(hql,SimplePost.class)
 //                .setParameter("u",user)
                 .setFirstResult(count * page)
@@ -36,7 +36,7 @@ public class PostDaoImpl implements PostDao {
 
     @Override
     public Collection<AbstractPost> getUserPosts(User user, int page, int count) {
-        String hql = "SELECT p FROM SimplePost p WHERE p.poster=:poster ORDER BY p.creationDate";
+        String hql = "SELECT p FROM SimplePost p WHERE p.poster=:poster ORDER BY p.creationDate DESC";
 //        String hql = "SELECT p FROM SimplePost p";
         Query q = em.createQuery(hql,SimplePost.class)
                 .setParameter("poster",user)

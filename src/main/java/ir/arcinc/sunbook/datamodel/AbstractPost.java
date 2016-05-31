@@ -1,6 +1,8 @@
 package ir.arcinc.sunbook.datamodel;
 
+import org.hibernate.annotations.Fetch;
 import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.repository.cdi.Eager;
 
 import javax.persistence.*;
 import java.util.Collection;
@@ -17,13 +19,13 @@ public abstract class AbstractPost {
     @GeneratedValue
     private long id;
 
-    @OneToOne(cascade = CascadeType.MERGE)
+    @OneToOne(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
     private User poster;
 
     @CreatedDate
     private Date creationDate;
 
-    @ManyToMany(cascade = CascadeType.MERGE)
+    @ManyToMany(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
     private Collection<User> likes;
 
     public AbstractPost(User poster, Date creationDate) {
@@ -77,5 +79,15 @@ public abstract class AbstractPost {
     @Override
     public int hashCode() {
         return (int) (getId() ^ (getId() >>> 32));
+    }
+
+    @Override
+    public String toString() {
+        return "AbstractPost{" +
+                "id=" + id +
+                ", poster=" + poster +
+                ", creationDate=" + creationDate +
+                ", likes=" + likes +
+                '}';
     }
 }
