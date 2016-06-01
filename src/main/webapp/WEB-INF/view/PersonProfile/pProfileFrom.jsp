@@ -1,15 +1,18 @@
-<!DOCTYPE html>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"><!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>فرم نمایه شخصی</title>
 
     
-    <link rel="stylesheet" type="text/css" href="assets/semantic/semantic.rtl.min.css">
-    <link rel="stylesheet" type="text/css" href="assets/css/site.css">
-    <script type="text/javascript" src="assets/js/jquery-2.2.2.min.js"></script>
-    <script type="text/javascript" src="assets/semantic/semantic.min.js"></script>
-    <script type="text/javascript" src="assets/js/site.js"></script>
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/semantic/semantic.rtl.min.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/site.css">
+    <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery-2.2.2.min.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/resources/semantic/semantic.min.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/site.js"></script>
 
 
 </head>
@@ -42,12 +45,12 @@
             <i class="user icon"></i>
         </a>
     </c:if>
-    <c:otherwise>
+    <c:if test="${pageContext.request.userPrincipal.name != null}">
         <a href="/pProfile" class="item left" id="login">
             <b>سلام ${pageContext.request.userPrincipal.name}</b>
             <i class="user icon"></i>
         </a>
-    </c:otherwise>
+    </c:if>
     <a href="pProfile.html" class="item">
         نمایه شخصی
         <i class="archive icon"></i>

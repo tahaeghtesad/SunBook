@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -63,12 +64,12 @@
             <i class="user icon"></i>
         </a>
     </c:if>
-    <c:otherwise>
+    <c:if test="${pageContext.request.userPrincipal.name != null}">
         <a href="/pProfile" class="item left" id="login">
             <b>سلام ${pageContext.request.userPrincipal.name}</b>
             <i class="user icon"></i>
         </a>
-    </c:otherwise>
+    </c:if>
     <a href="pProfile.html" class="item">
         نمایه شخصی
         <i class="archive icon"></i>
