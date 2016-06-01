@@ -38,7 +38,6 @@
 </head>
 
 <body>
-
 <div class="ui sidebar thin labeled menu vertical inverted fixed icon" id="sidebar">
     <a href="#" class="item">
         <i class="home icon"></i>
@@ -48,10 +47,12 @@
         <i class="archive icon"></i>
         <b>نمیدونم</b>
     </a>
-    <a href="#" class="item" id="logout">
-        <i class="ui remove icon"></i>
-        <b>خروج</b>
-    </a>
+    <c:if test="${pageContext.request.userPrincipal.name != null}">
+        <a href="#" class="item" id="logout">
+            <i class="ui remove icon"></i>
+            <b>خروج</b>
+        </a>
+    </c:if>
 </div>
 
 <div class="ui top horizontal menu visible inverted fixed" id="topar">
@@ -59,26 +60,30 @@
         <b>منو</b>
         <i class="ui icon content"></i>
     </a>
-    <a href="../unsorted/login.jsp" class="item left" id="login">
-        <b>ورود</b>
-        <i class="user icon"></i>
+    <c:if test="${pageContext.request.userPrincipal.name == null}">
+        <a href="/account/login" class="item left" id="login">
+            <b>ورود</b>
+            <i class="user icon"></i>
+        </a>
+    </c:if>
+    <c:otherwise>
+        <a href="/pProfile" class="item left" id="login">
+            <b>سلام ${pageContext.request.userPrincipal.name}</b>
+            <i class="user icon"></i>
+        </a>
+    </c:otherwise>
+    <a href="pProfile.html" class="item">
+        نمایه شخصی
+        <i class="archive icon"></i>
     </a>
-    <a class="item">
-        <div class="ui icon input">
-            <i class="search icon"></i>
-            <input type="text" placeholder="کند و کو">
-        </div>
-    </a>
-    <a href="" class="item">
+    <a href="/newsfeed/home" class="item">
         اطلاعیه ها
         <i class="archive icon"></i>
     </a>
-    <a href="/" class="item">
-        خانه
-        <i class="home icon"></i>
+    <a href="adverP.html" class="item">
+        جست و جو در آگهی ها
     </a>
 </div>
-
 
 <div class="main pusher dimmer">
     <div class="ui grid">
