@@ -10,10 +10,7 @@ import org.springframework.context.ApplicationContext;
 
 import javax.sql.DataSource;
 import java.sql.SQLException;
-import java.util.Arrays;
-import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 /**
  * Created by tahae on 5/20/2016.
@@ -64,11 +61,11 @@ public class Application{
         AdvService advService = ctx.getBean(AdvService.class);
 
         Adv adv = new Adv("java" ,new Company("اسم شرکت", "سهامی خاص", "تهران", "تهران", "همه کار", "مدیر", null, null) , "tehran" , new Date() , 1, 1, "maaaaaaaaaaatn!");
-  //      Adv adv = new Adv();
-    //    adv.setOstan("tehran");
-      //  adv.setSalaryType(1);
-        //adv.setType(1);
-      // advService.create(adv);
+//        Adv adv = new Adv();
+//        adv.setOstan("tehran");
+//        adv.setSalaryType(1);
+//        adv.setType(1);
+//       advService.create(adv);
 
 
         Set<Project> projects = new HashSet<>();
@@ -76,7 +73,8 @@ public class Application{
         Set<Skill> skills = new HashSet<>();
         Company comp = new Company("اسم شرکت2", "سهامی خاص", "تهران", "تهران", "همه کار میکنیم! :دی", "مدیر", projects, team);
         Project project = new Project("پروژه 1" , comp , team , "توضیییییییییییییح");
-        User u = userService.find(2L);
+//        User u = new User("taha","eghtesad","taha", null,"tahaeghtesad@gmail.com","pass","USER", Collections.EMPTY_SET,"shiraz","fars","sbu","ce",Collections.EMPTY_SET);
+        User u = userService.find(5L);
         AbstractPost p = new SimplePost(u,new Date(),"سلام، برو بمیر");
 
 //        userService.create(u);

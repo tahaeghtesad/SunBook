@@ -12,7 +12,10 @@ import java.util.List;
 /**
  * Created by tahae on 5/30/2016.
  */
-@MappedSuperclass
+@Entity
+@Table(name = "POST")
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name = "type", discriminatorType = DiscriminatorType.STRING)
 public abstract class AbstractPost {
 
     @Id
@@ -32,6 +35,8 @@ public abstract class AbstractPost {
         this.poster = poster;
         this.creationDate = creationDate;
     }
+
+    public AbstractPost(){}
 
     public long getId() {
         return id;

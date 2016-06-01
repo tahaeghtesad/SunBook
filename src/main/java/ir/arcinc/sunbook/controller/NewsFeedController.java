@@ -64,7 +64,7 @@ public class NewsFeedController {
     @RequestMapping(value = "/like/{postId}",method = RequestMethod.GET)
     public @ResponseBody boolean like(@PathVariable long postId) {
 //        User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        User currentUser = userService.find(2L);
+        User currentUser = userService.find(5L);
         System.out.println(postId);
 
         AbstractPost post = postService.find(postId);
@@ -79,11 +79,15 @@ public class NewsFeedController {
 //        Company currentCompany = new Company("ما","1","تهران","تهران","exp","man",Collections.EMPTY_SET,Collections.EMPTY_SET);
 
 //        User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        User currentUser = userService.find(2L);
+        User currentUser = userService.find(5L);
 
         adv.setCompany(currentCompany);
         adv.setDate(new Date());
         adv.setSalaryType(1);
+
+        AdvPost post = new AdvPost(currentUser,new Date(),adv);
+
+        postService.create(post);
 
         System.out.println(adv);
 

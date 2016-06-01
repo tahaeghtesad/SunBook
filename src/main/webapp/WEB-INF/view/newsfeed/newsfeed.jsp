@@ -131,25 +131,25 @@
                                 </div>
                             </div>
                         </c:if>
-                        <c:if test="${post.getClass().simpleName eq 'Advertisement'}">
+                        <c:if test="${post.getClass().simpleName eq 'AdvPost'}">
                             <div class="event">
                                 <div class="label">
                                     <i class="asterisk icon"></i>
                                 </div>
                                 <div class="content">
                                     <div class="summary">
-                                        <a class="user" href="#">شرکت کمان</a> دو آگهی استخدام انتشار داده است
+                                        <a class="user" href="#">${post.poster.firstname}</a> دو آگهی استخدام انتشار داده است
                                         <div class="date">
                                             15 ثانیه پیش
                                         </div>
                                     </div>
                                     <div class="extra text">
-                                        <p><a href="#"><i class="circle icon"></i></a> نیروی متخصص برای مدیریت شبکه
+                                        <p><a href="#"><i class="circle icon"></i></a>${post.adv.text}
                                         </p>
-                                        <p><a href="#"><i class="red circle icon"></i></a> یک عدد منشی خانم</p>
+                                        <p><a href="#"><i class="red circle icon"></i></a> ${post.adv.type}</p>
                                     </div>
                                     <div class="meta">
-                                        <a class="like"><i class="like icon"></i><strong>1,353</strong><input type="hidden" value="${post.id}"></a>
+                                        <a class="like"><i class="like icon"></i><strong>${post.likes.size()}</strong><input type="hidden" value="${post.id}"></a>
                                     </div>
                                 </div>
                             </div>

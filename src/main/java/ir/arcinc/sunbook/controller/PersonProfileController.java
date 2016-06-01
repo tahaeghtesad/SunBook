@@ -20,7 +20,7 @@ public class PersonProfileController {
     private UserService userService;
     @RequestMapping(value = "/pProfile" , method = RequestMethod.GET)
     public ModelAndView pProfilePage(){
-        User user = userService.find(2L);
+        User user = userService.find(5L);
         ModelAndView pProfilePage = new ModelAndView("/PersonProfile/pProfile" , "user" , user);
         return pProfilePage;
     }
