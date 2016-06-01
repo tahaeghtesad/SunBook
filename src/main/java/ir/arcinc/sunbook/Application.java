@@ -1,6 +1,7 @@
 package ir.arcinc.sunbook;
 import ir.arcinc.sunbook.datamodel.*;
 import ir.arcinc.sunbook.service.AdvService;
+import ir.arcinc.sunbook.service.CompService;
 import ir.arcinc.sunbook.service.PostService;
 import ir.arcinc.sunbook.service.UserService;
 import org.springframework.boot.SpringApplication;

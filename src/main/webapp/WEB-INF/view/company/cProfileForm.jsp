@@ -139,7 +139,7 @@
                     </div>
                     <div class="nine wide required field">
                         <label>آدرس</label>
-                        <form:input path="addr" placeholder="آدرس" type="text">
+                        <form:input path="addr" placeholder="آدرس" type="text"/>
 
                     </div>
                 </div>

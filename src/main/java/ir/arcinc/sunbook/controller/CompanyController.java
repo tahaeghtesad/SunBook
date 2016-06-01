@@ -41,8 +41,7 @@ public class CompanyController {
     @RequestMapping(value = "/create/{id}",method = RequestMethod.POST)
     @ResponseBody
     public ModelAndView submitForm(@ModelAttribute Company c , @PathVariable long id){
-        c.setId(id);
-   //     compService.update(c);
+//TODO        compService.update(c);
         System.out.println(c.getName());
 
         return new ModelAndView("company/cProfile" , "company" , c);

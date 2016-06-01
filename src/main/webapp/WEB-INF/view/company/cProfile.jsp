@@ -155,7 +155,7 @@
                     </div>
                     <div class="extra content">
     <span>
-        <a href="<c:url value='/profile/create/${element.id}' />">
+        <a href="<c:url value='/profile/create/${company.id}' />">
 تغییر نمایه        </a>    </span>
                     </div>
                 </div>
