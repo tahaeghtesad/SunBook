@@ -33,4 +33,15 @@ $(document).ready(function() {
     $("#sidebar-toggler").click(function() {
         $("#sidebar").sidebar("setting", "transition", "push").sidebar("setting", "dimPage", true).sidebar("toggle");
     });
+    $("#logout").on('click',function () {
+        $("#logout i").attr("class", "notched circle loading icon");
+        $.post("/account/logout", function (data, status) {
+            if (status === "success") {
+                $("#login").attr("href", "/account/login");
+                $("#login b").text("ورود");
+                $("#logout").hide();
+                $("#UserCard").hide();
+            }
+        });
+    });
 });
